@@ -18,6 +18,14 @@ const server = http.createServer((requisicao, resposta) => {
         resposta.end(JSON.stringify(tarefas))
     }else if (requisicao.method == 'GET' && urlObj.pathname == '/tarefas/busca'){
         const titulo = urlObj.searchParams.get('titulo');
+         const tarefasEncontradas = tarefas.filter((tarefa) =>
+            tarefa.titulo.toLowerCase().includes(titulo.toLowerCase())
+        );
+
+        resposta.statusCode = 200
+        resposta.end(JSON.stringify(tarefasEncontradas))
+    
+        
     }
     
     else if (requisicao.method == 'POST' && requisicao.url == '/tarefa'){
@@ -61,4 +69,3 @@ const server = http.createServer((requisicao, resposta) => {
 server.listen(porta, () => {
     console.log(`Servidor funcionando na pota ${porta}`);
 });
-
