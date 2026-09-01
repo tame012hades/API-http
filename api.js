@@ -46,7 +46,7 @@ const server = http.createServer((requisicao, resposta) => {
              const novaTarefa = JSON.parse(body)
              if (!novaTarefa.titulo){
                 resposta.statusCode = 400
-                resposta.end(JSON.stringify({errpr: 'O campo "titulo" é obrigatório.' }));
+                resposta.end(JSON.stringify({error: 'JSON invalido!' }));
              }
 
              const tarefaCriada = {
@@ -62,7 +62,7 @@ const server = http.createServer((requisicao, resposta) => {
             }   catch (error){ 
             
                 resposta.statusCode = 400
-                resposta.end(JSON.stringify({error:'Formato JSON invalido!'}))
+                resposta.end(JSON.stringify({error:'JSON invalido!'}))
                 
             }
         })
