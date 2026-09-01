@@ -25,8 +25,16 @@ const server = http.createServer((requisicao, resposta) => {
         resposta.statusCode = 200
         resposta.end(JSON.stringify(tarefasEncontradas))
     
-        
-    }
+        }else if (requisicao.method == 'DELETE' && urlObj.pathname == '/tarefas'){
+    const index = urlObj.searchParams.get('index');
+
+    tarefas.splice(index, 2);
+
+    resposta.statusCode = 200
+    resposta.end(JSON.stringify({
+        mensagem: 'Tarefa removida com sucesso!'
+    }))}
+
     
     else if (requisicao.method == 'POST' && requisicao.url == '/tarefa'){
         let body = ''
